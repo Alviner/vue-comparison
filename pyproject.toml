@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "vue-comparison"
+version = "0.1.0"
+description = "Vue comparison with and witout building"
+authors = ["Ivan Sitkin <alvinera@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "vue_comparison"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiomisc = {extras = ["aiohttp"], version = "^17.0.8"}
+argclass = "^0.9.2"
+rich = "^13.3.3"
+
+
+[tool.poetry.scripts]
+vue_admin = "vue_comparison.__main__:main"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
