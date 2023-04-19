@@ -68,7 +68,7 @@ button:focus-visible {
   padding: 2em;
 }
 
-#app {
+.app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -86,4 +86,7 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+.logo {
+  height: 32px;
 }

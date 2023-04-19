@@ -1,0 +1,17 @@
+{
+  "name": "shim",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "vue": "^3.2.47",
+    "es-module-shims": "1.7.1",
+    "esbuild": "0.17.17"
+  },
+  "devDependencies": {
+    "@luncheon/esbuild-plugin-gzip": "^0.1.0"
+  }
+}

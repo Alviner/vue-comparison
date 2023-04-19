@@ -11,7 +11,7 @@
 </script>
 
 <template id="main-app">
-  <div>
+  <div class="app">
     <div>
       <a href="https://v2.vuejs.org" target="_blank">
         <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
