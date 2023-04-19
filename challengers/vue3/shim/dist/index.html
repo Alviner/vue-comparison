@@ -3,64 +3,24 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/assets/style.css">
-  <title>Vite + Vue</title>
+  <script src="/assets/loader.js"></script>
+  <script async src="/assets/vendor/es-module-shims.js"></script>
+  <title>Vue</title>
+  <script type="importmap-shim" type="application/json">
+	  {
+		  "imports": {
+			  "vendor": "/assets/vendor/vendor.js"
+		  }
+	  }
+  </script>
 </head>
 
 <body>
 
-  <script>
-    function append2Head(element) {
-      document.head.append(element)
-    }
-
-    async function processSFC(response) {
-      const source = await response.text();
-      const element = document.createElement("div");
-      element.innerHTML = source;
-      let component = "export default {}";
-      Array.from(element.children).forEach(item => {
-        switch (item.nodeName) {
-          case 'TEMPLATE':
-            append2Head(item);
-            break;
-          case 'SCRIPT':
-            component = item.innerHTML;
-            break;
-          case 'STYLE':
-            append2Head(item)
-            break;
-        }
-      })
-      return new Response(new Blob([component], {type: 'application/javascript'}))
-    }
-
-    globalThis.esmsInitOptions = {
-      fetch: async function (url) {
-        const response = await fetch(url);
-        if (!response.ok)
-          throw new Error(`${response.status} ${response.statusText} ${response.url}`);
-
-        if (response.url.endsWith('.vue')) {
-          return await processSFC(response)
-        }
-        return response;
-      },
-    }
-  </script>
-  <script type="importmap-shim" type="application/json">
-		{
-			"imports": {
-				"vendor": "/assets/vendor/vendor.js"
-			}
-		}
-	</script>
   <div id="app"></div>
   <script type="module-shim" src="/assets/main.js"></script>
 </body>
-
-<script async src="/assets/vendor/es-module-shims.js"></script>
 
 </html>
