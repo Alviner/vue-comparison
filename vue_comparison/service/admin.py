@@ -28,8 +28,6 @@ class StaticResource(web.StaticResource):
         directory = pathlib.Path(self._directory)
         filename = request.match_info['filename']
         file_path = (directory / filename).resolve()
-        if not file_path.exists():
-            raise web.HTTPNotFound
         if directory not in file_path.parents:
             log.error(
                 'Not serving file %r because it is outside static '
@@ -41,6 +39,8 @@ class StaticResource(web.StaticResource):
             raise web.HTTPNotFound
         if (gzip_file := file_path.with_name(file_path.name + '.gz')).is_file():
             file_path = gzip_file
+        if not file_path.is_file():
+            raise web.HTTPNotFound
         return web.FileResponse(file_path)
 
 
