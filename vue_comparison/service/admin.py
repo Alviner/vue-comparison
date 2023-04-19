@@ -28,6 +28,8 @@ class StaticResource(web.StaticResource):
         directory = pathlib.Path(self._directory)
         filename = request.match_info['filename']
         file_path = (directory / filename).resolve()
+        if not file_path.exists():
+            raise web.HTTPNotFound
         if directory not in file_path.parents:
             log.error(
                 'Not serving file %r because it is outside static '

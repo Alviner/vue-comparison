@@ -22,8 +22,8 @@
   }
 
   function append2Head(element) {
-		document.head.appendChild(element)
-	}
+    document.head.appendChild(element)
+  }
 
   var body = document.getElementsByTagName("body")[0];
   ctx.components = {};
@@ -36,18 +36,18 @@
     element.innerHTML = source;
     let component = "";
     Array.from(element.children).forEach(item => {
-		  switch (item.nodeName) {
-			  case 'TEMPLATE':
-			    append2Head(item);
-				  break;
-			  case 'SCRIPT':
-				  component = item.innerHTML;
-				  break;
-			  case 'STYLE':
-				  append2Head(item)
-				  break;
-			}
-		})
+      switch (item.nodeName) {
+        case 'TEMPLATE':
+          append2Head(item);
+          break;
+        case 'SCRIPT':
+          component = item.innerHTML;
+          break;
+        case 'STYLE':
+          append2Head(item)
+          break;
+      }
+    })
     await loadScript(component);
   }
 
